@@ -1,0 +1,42 @@
+CREATE TABLE stadium
+   ( id INT NOT NULL PRIMARY KEY  
+   , event_name VARCHAR(50) NOT NULL, people int 
+   );
+
+Insert into stadium (id,event_name,people)
+values (1,'event_1',10);
+
+Insert into stadium values       
+ (2,'event_2',109);
+
+Insert into stadium values(       
+ 3,'event_3',150);
+
+Insert into stadium values(       
+ 4,'event_4',99);
+
+Insert into stadium values(     
+ 5,'event_5',145);
+
+Insert into stadium values(  
+ 6,'event_6',1455);
+
+Insert into stadium values
+(7,'event_7',199);
+
+Insert into stadium values(
+ 8,'event_8',188);    
+ 
+SELECT id,event_name , people FROM stadium a WHERE people >= 100
+    AND (SELECT people FROM stadium b WHERE b.id = a.id + 1) >= 100
+    AND (SELECT people FROM stadium c WHERE c.id = a.id + 2) >= 100 
+    OR people >= 100
+            AND (SELECT people FROM stadium e WHERE e.id = a.id - 1) >= 100
+            AND (SELECT people FROM stadium f WHERE f.id = a.id + 1) >= 100
+    OR people >= 100
+            AND (SELECT people FROM stadium g WHERE g.id = a.id - 1) >= 100
+        AND (SELECT people FROM stadium h WHERE h.id = a.id - 2) >= 100
+order by id;
+
+
+*Note:- Both queries take around 2 hours to solve.
